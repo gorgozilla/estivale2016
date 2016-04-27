@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension version="3.1" type="template" client="site">
+	<name>Estivale 2016</name>
+	<creationDate>25 November 2015</creationDate>
+	<author>Laurent Jeanmonod</author>
+	<authorEmail>ljeanmonod(at)gmail.com</authorEmail>
+	<copyright>Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0</version>
+	<description>Template du site Estivale 2016</description>
+
+	<files>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>javascript</folder>
+		<folder>language</folder>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>favicon.ico</filename>
+	</files>
+
+	<positions>
+		<position>breadcrumbs</position>
+		<position>main_menu</position>
+		<position>language_selector</position>
+		<position>left_block_home</position>
+		<position>right_block_home</position>
+		<position>teaser_home</position>
+		<position>news_home</position>
+		<position>video_home</position>
+		<position>footer_partners</position>
+		<position>footer_menu</position>
+	</positions>
+
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+				<field name="sitetitle"  type="text" default=""
+					label="TPL_BEEZ3_FIELD_SITETITLE_LABEL"
+					description="TPL_BEEZ3_FIELD_SITETITLE_DESC"
+					filter="string" />
+
+				<field name="sitedescription"  type="text" default=""
+					label="TPL_BEEZ3_FIELD_DESCRIPTION_LABEL"
+					description="TPL_BEEZ3_FIELD_DESCRIPTION_DESC"
+					filter="string" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

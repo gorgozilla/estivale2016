@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="estipress">
+		<fieldset name="estipress" label="PLG_USER_ESTIPRESS_SLIDER_LABEL">
+			<field name="firstname" type="text"
+				description="PLG_USER_ESTIPRESS_FIELD_FIRSTNAME_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_FIRSTNAME_LABEL"
+				class="form-control" />
+			<field name="lastname" type="text"
+				description="PLG_USER_ESTIPRESS_FIELD_LASTNAME_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_LASTNAME_LABEL"
+				class="form-control" />
+			<field name="media" type="text"
+				description="PLG_USER_ESTIPRESS_FIELD_MEDIA_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_MEDIA_LABEL"
+				class="form-control">
+			</field>
+			<field name="type_media" type="list"
+				description="PLG_USER_ESTIPRESS_FIELD_TYPEMEDIA_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_TYPEMEDIA_LABEL"
+				class="form-control">
+				<option value="Agence">Agence</option>
+				<option value="Presse écrite">Presse écrite</option>
+				<option value="Radio">Radio</option>
+				<option value="TV">TV</option>
+				<option value="Web">Web</option>
+			</field>
+			<field name="fonction" type="list"
+				description="PLG_USER_ESTIPRESS_FIELD_FONCTION_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_FONCTION_LABEL"
+				class="form-control">
+				<option value="journaliste">Journaliste</option>
+				<option value="Photographe">Photographe</option>
+				<option value="promotion manager">Promotion manager</option>
+				<option value="rédacteur en chef">Rédacteur en chef</option>
+				<option value="Technicien en radio/TV">Technicien en radio/TV</option>
+			</field>
+			<field name="zone_diffusion" type="text"
+				description="PLG_USER_ESTIPRESS_FIELD_ZONEDIFF_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_ZONEDIFF_LABEL"
+				class="form-control">
+			</field>
+			<field name="site_media" type="text"
+				description="PLG_USER_ESTIPRESS_FIELD_SITEMEDIA_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_SITEMEDIA_LABEL"
+				class="form-control">
+			</field>
+			<field name="dates_presence" type="checkboxes"
+				description="PLG_USER_ESTIPRESS_FIELD_DATESPRESENCE_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_DATESPRESENCE_LABEL">
+				<option value="29 juillet">29 juillet</option>
+				<option value="30 juillet">30 juillet</option>
+				<option value="31 juillet">31 juillet</option>
+				<option value="01 août">01 août</option>
+			</field>
+			<field name="demande_interviews" type="textarea"
+				description="PLG_USER_ESTIPRESS_FIELD_DEMINTERVIEWS_DESC"
+				label="PLG_USER_ESTIPRESS_FIELD_DEMINTERVIEWS_LABEL"
+				class="form-control">
+			</field>
+		</fieldset>
+	</fields>
+</form>
