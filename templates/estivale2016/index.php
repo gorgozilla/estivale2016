@@ -58,7 +58,7 @@ $pageId = $jinput->get('id');
 		<script type="text/javascript">
 			<?php $background_img = rand(1,9); ?>
 			jQuery(document).ready(function() {
-				  jQuery.backstretch('<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/estivale2016/templates/estivale2016/images/backgrounds/'.$background_img.'.jpg';?>');
+				  jQuery.backstretch('<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/templates/estivale2016/images/backgrounds/'.$background_img.'.jpg';?>');
 				  
 				  jQuery('.content img').addClass('img img-responsive');
 				  jQuery("img").parents('a').css("background", "none");
@@ -121,20 +121,24 @@ $pageId = $jinput->get('id');
 				
 				<?php if($pageId!=48 && $pageId!=49 && $pageId!=52 && $pageId!=53){ ?>
 				<div id="main_content">
-					<jdoc:include type="modules" name="second_nav_level" />
+					
 					<?php if($showTeaserRow){ ?>
-						<div class="row teaser-line-up">
+					<div class="line-up-container">
+						<div class="row teaser-line-up" align="center">
 							<!--<div class="hidden-xs col-sm-4 col-md-3 hidden-xs left-block-home">
 								<jdoc:include type="modules" name="left_block_home" />
 							</div>
 							<div class=" col-xs-12 col-sm-8 col-md-9 right-block-home">
 								<jdoc:include type="modules" name="right_block_home" />
 							</div>-->
-							<div class="col-xs-12">
-								<jdoc:include type="modules" name="lineup_home" />
-							</div>
+								<a href="index.php/fr/programme/tous-les-artistes" alt="Voir le programme complet">
+									<img src="images/lineup_home.png" class="img img-responsive" alt="Line Up Estivale Open Air 2016" />
+								</a>
+							<div style="clear:both;"></div>
 						</div>
+					</div>
 					<?php } ?>
+					
 					<div class="row">
 						<div class="col-xs-12 content">
 							<jdoc:include type="component" />

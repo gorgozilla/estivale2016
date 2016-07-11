@@ -8,7 +8,7 @@
  */
 
 defined('_JEXEC') or die;
-
+jimport('mosets.profilepicture'); 
 require_once JPATH_COMPONENT . '/helpers/route.php';
 
 $controller = JControllerLegacy::getInstance('Users');

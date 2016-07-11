@@ -53,6 +53,7 @@ header{
 	margin:0;
 	padding:0;
 	position:relative;
+	z-index:2;
 }
 
 /********BOOTSTRAP*******************/
@@ -193,12 +194,6 @@ span.infostage{
 
 div#main_content{
 	margin-top:70px;
-}
-
-div.row.teaser-line-up{
-/* 	background: rgb(255, 222, 22); /* Fall-back for browsers that don't support rgba
-    background: rgba(255, 222, 22, .5); */
-	margin-bottom:50px;
 }
 
 div.left-block-home{
@@ -478,6 +473,10 @@ div.acymailing_form p.acysubbuttons{
 	text-align:left;
 }
 
+div.row.teaser-line-up img{
+	margin-top:-50px;
+}
+
 @media(max-width:767px){
 	div.container{
 		max-width:570px;
@@ -542,6 +541,18 @@ div.acymailing_form p.acysubbuttons{
 	}
 	.logoheader img{
 		width:200px;
+	}
+	div.line-up-container{
+		height:250px;
+	}
+	div.row.teaser-line-up{
+		background: url('../../../images/bg_lineup_home.png') top left repeat-x; /* Fall-back for browsers that don't support rgba*/
+		width:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		margin-top:250px;
+		z-index:1;
 	}
 }
 
@@ -618,6 +629,18 @@ div.acymailing_form p.acysubbuttons{
 	div.body{
 		width:100%;
 		background:url('../images/eolienne_header.png') 350% 0 no-repeat;
+	}
+	div.line-up-container{
+		height:300px;
+	}
+	div.row.teaser-line-up{
+		background: url('../../../images/bg_lineup_home.png') top left repeat-x; /* Fall-back for browsers that don't support rgba*/
+		width:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		margin-top:350px;
+		z-index:1;
 	}
 }
 
@@ -699,6 +722,17 @@ div.acymailing_form p.acysubbuttons{
 	div.body{
 		width:100%;
 		background:url('../images/eolienne_header.png') 100% 0 no-repeat;
+	}
+	div.line-up-container{
+		height:300px;
+	}
+	div.row.teaser-line-up{
+		background: url('../../../images/bg_lineup_home.png') top left repeat-x; /* Fall-back for browsers that don't support rgba*/
+		width:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		margin-top:300px;
 	}
 }
 
@@ -795,4 +829,8 @@ div.acymailing_form p.acysubbuttons{
         display:block !important;
 		overflow: visible;
     }
+	div.row.teaser-line-up img{
+		margin-top:-50px;
+		margin-left:60px;
+	}
 }

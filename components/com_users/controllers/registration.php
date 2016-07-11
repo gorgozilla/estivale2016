@@ -107,6 +107,7 @@ class UsersControllerRegistration extends UsersController
 	 */
 	public function register()
 	{
+
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 

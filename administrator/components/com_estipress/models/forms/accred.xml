@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset>
+        <field 
+            name="accred_id" 
+            type="hidden" />
+        <field 
+            name="user_id" 
+            type="hidden" />
+    </fieldset>
+</form>
