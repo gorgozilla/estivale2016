@@ -238,11 +238,22 @@
 				if (!$db->query()) {
 					throw new Exception($db->getErrorMsg());
 				}
+				
+				JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_estipress/tables');
+				$accred = JTable::getInstance('Accred','Table');
+				$accred->user_id = $userId;
+				$accred->store();
 			}
 			catch (JException $e) {
 				$this->_subject->setError($e->getMessage());
 				return false;
 			}
+		}
+		
+        if($isNew){
+
+        }else{
+			return false;
 		}
  
 		return true;
@@ -278,6 +289,15 @@
 				if (!$db->query()) {
 					throw new Exception($db->getErrorMsg());
 				}
+				
+				$db = JFactory::getDbo();
+				$db->setQuery(
+					'DELETE FROM #__estipress_accred WHERE user_id = '.$userId
+				);
+ 
+				if (!$db->query()) {
+					throw new Exception($db->getErrorMsg());
+				}
 			}
 			catch (JException $e)
 			{
@@ -288,8 +308,6 @@
  
 		return true;
 	}
- 
- 
  }
  
  ?>

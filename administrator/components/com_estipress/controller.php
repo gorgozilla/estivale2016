@@ -1,5 +1,4 @@
 <?php
-require_once JPATH_COMPONENT . '/models/daytime.php';
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_weblinks
@@ -11,11 +10,7 @@ require_once JPATH_COMPONENT . '/models/daytime.php';
 defined('_JEXEC') or die;
 
 /**
- * Weblinks Weblink Controller
- *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.5
+ * Estipress Controller
  */
 class EstipressController extends JControllerLegacy
 {
@@ -29,15 +24,12 @@ class EstipressController extends JControllerLegacy
 	 *
 	 * @since   1.5
 	 */
-	public $daytime_id = null;
-	
 	public function display($cachable = false, $urlparams = false)
 	{	
 		// Get the document object.
 		$document = JFactory::getDocument();
-
 		// Set the default view name and format from the Request.
-		$vName   = $this->input->get('view', 'members');
+		$vName   = $this->input->get('view', 'accred');
 		$vFormat = $document->getType();
 		$lName   = $this->input->get('layout', 'default', 'string');
 
@@ -60,29 +52,6 @@ class EstipressController extends JControllerLegacy
 
 		return $this;
 	}
-	
-  public function getCalendarDates()
-  {
-		$return = array("success"=>false);
-
-		// Get the model for the view.
-		$modelDaytime = $this->getModel('daytime');
-		$this->daytimes = $modelDaytime->listItems();
-
-  		$return['success'] = true;
-  		$return['msg'] = 'Yes';
-		$return['calendar_dates'] = $this->daytimes;
-
-		echo json_encode($return);
-  }
-  
-	public function getDaytime()
-	{
-		// Set the default view name and format from the Request.
-		$daytime_id   = $this->input->get('daytime_id');
-		$model = $this->getModel('daytime');
-		$daytime = $model->getDaytime($daytime_id);
-		echo json_encode($daytime);
-		exit;
-	}
 }
+
+?>

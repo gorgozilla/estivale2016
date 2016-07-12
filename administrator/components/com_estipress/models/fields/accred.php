@@ -30,15 +30,13 @@ class JFormFieldAccred extends JFormFieldList
 	 * @return	array	The field option objects.
 	 * @since	1.6
 	 */
-	public function getOptionsTshirtSize()
+	public function getOptionsDays()
 	{
 		$arr = array(
-			JHTML::_('select.option', 'S', JText::_('S') ),
-			JHTML::_('select.option', 'M', JText::_('M') ),
-			JHTML::_('select.option', 'L', JText::_('L') ),
-			JHTML::_('select.option', 'XL', JText::_('XL') ),
-			JHTML::_('select.option', 'XXL', JText::_('XXL')),
-			JHTML::_('select.option', 'XXXL', JText::_('XXXL'))
+			JHTML::_('select.option', '29 juillet', JText::_('29 juillet') ),
+			JHTML::_('select.option', '30 juillet', JText::_('30 juillet') ),
+			JHTML::_('select.option', '31 juillet', JText::_('31 juillet') ),
+			JHTML::_('select.option', '01', JText::_('01 août') )
 		);
  
 		return $arr;

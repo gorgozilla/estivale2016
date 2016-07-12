@@ -15,11 +15,8 @@ $this->sortDirection	= $this->escape($this->state->get('list.direction'));
 
 //Get tshirt-size options
 JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
-$membersOptions = JFormHelper::loadFieldType('Accred', false);
-$tshirtOptions=$membersOptions->getOptionsTshirtSize(); // works only if you set your field getOptions on public!!
-
-//Get camping options
-$campingOptions=$membersOptions->getOptionsCamping(); // works only if you set your field getOptions on public!!
+$accredOptions = JFormHelper::loadFieldType('Accred', false);
+$daysOptions=$accredOptions->getOptionsDays(); // works only if you set your field getOptions on public!!
 
 ?>
 <script language="javascript" type="text/javascript">
@@ -37,6 +34,7 @@ function tableOrdering( order, dir, task )
 </div>
 
 <div id="j-main-container" class="span10">
+	<h1>Liste des accréditations</h1>
 	<form action="<?php echo JRoute::_('index.php?option=com_estipress&view=accred');?>" method="post" name="adminForm" id="adminForm">
 		<div id="j-main-container">
 			<div id="filter-bar" class="btn-toolbar">
@@ -49,23 +47,14 @@ function tableOrdering( order, dir, task )
 					<button type="button" class="btn hasTooltip" title="Effacer" onclick="document.getElementById('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<select name="filter_tshirtsize" class="inputbox" onchange="this.form.submit()">
-						<option value=""> - Select tshirt-size - </option>
-						<?php echo JHtml::_('select.options', $tshirtOptions, 'value', 'text', $this->state->get('filter.tshirt_size'));?>
-					</select>
-					<select name="filter_campingPlace" class="inputbox" onchange="this.form.submit()">
-						<option value=""> - Camping - </option>
-						<?php echo JHtml::_('select.options', $campingOptions, 'value', 'text', $this->state->get('filter.campingPlace'));?>
+					<select name="filter_day_presence" class="inputbox" onchange="this.form.submit()">
+						<option value=""> - Select day - </option>
+						<?php echo JHtml::_('select.options', $daysOptions, 'value', 'text', $this->state->get('filter.day_presence'));?>
 					</select>
 					<label for="limit" class="element-invisible"><?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 			</div>
-			<h3>Total t-shirts : <?php echo ($this->totalPolosF + $this->totalPolosM + $this->totalShirtsF + $this->totalShirtsM); ?></h3>
-			<h4>Total t-shirts terrain masculins : <?php echo $this->totalShirtsM!=null ? $this->totalShirtsM  : '0'; ?></h4>
-			<h4>Total t-shirts terrain féminins : <?php echo $this->totalShirtsF!=null ? $this->totalShirtsF  : '0'; ?></h4>
-			<h4>Total t-shirts loges masculins : <?php echo $this->totalPolosM!=null ? $this->totalPolosM  : '0'; ?></h4>
-			<h4>Total t-shirts loges féminins : <?php echo $this->totalPolosF!=null ? $this->totalPolosF  : '0'; ?></h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -80,16 +69,19 @@ function tableOrdering( order, dir, task )
 							<?php echo JHTML::_( 'grid.sort', 'Email', 'u.email', $this->sortDirection, $this->sortColumn); ?>
 						</th>
 						<th class="left">
-							<?php echo JText::_('Tél.'); ?>
+							<?php echo JText::_('Média'); ?>
 						</th>
 						<th class="left">
-							<?php echo JText::_('Adresse'); ?>
+							<?php echo JText::_('Type média'); ?>
 						</th>
 						<th class="left">
-							<?php echo JText::_('Ville'); ?>
+							<?php echo JText::_('Fonction'); ?>
 						</th>
 						<th class="left">
-							<?php echo JText::_( 'T-Shirt size' ); ?>
+							<?php echo JText::_( 'Zone diffusion' ); ?>
+						</th>
+						<th class="left">
+							<?php echo JText::_( 'Dates présence' ); ?>
 						</th>
 						<th class="center">
 							<?php echo JText::_('Actions'); ?>
@@ -99,16 +91,16 @@ function tableOrdering( order, dir, task )
 				<tbody>
 				<?php 
 				$itemNumber = $this->limitstart;
-				foreach ($this->members as $i => $item){
+				foreach ($this->accred as $i => $item){
 					$userId = $item->user_id; 
 					$user = JFactory::getUser($userId);
 					$userProfile = JUserHelper::getProfile( $userId );
-					$userProfilEstipress = EstipressHelpersUser::getProfilEstipress( $userId );
+					$userEstipress = EstipressHelpersUser::getProfilEstipress( $userId );
 					$itemNumber++;
 				?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="center hidden-phone">
-							<?php echo JHtml::_('grid.id', $i, $item->member_id); ?>
+							<?php echo JHtml::_('grid.id', $i, $item->accred_id); ?>
 						</td>
 						<td><?php echo $itemNumber; ?></td>
 						<td class="left">
@@ -117,21 +109,24 @@ function tableOrdering( order, dir, task )
 							</a>
 						</td>
 						<td class="left">
-							<a href="<?php echo JRoute::_('index.php?option=com_estipress&task=member.edit&member_id='.(int) $item->member_id); ?>">
+							<a href="mailto:<?php echo $item->email; ?>">
 							<?php echo JText::_($item->email); ?>
 							</a>
 						</td>
 						<td class="left">
-							<?php echo JText::_($userProfile->profile['phone']); ?>
+							<?php if($userEstipress->estipress['site_media']!=''){ echo '<a href=http://'.$userEstipress->estipress['site_media'].'>'; } echo JText::_($userEstipress->estipress['media']); if($userEstipress->estipress['site_media']!=''){ echo '</a>'; } ?>
 						</td>
 						<td class="left">
-							<?php echo JText::_($userProfile->profile['address1']); ?>
+							<?php echo JText::_($userEstipress->estipress['type_media']); ?>
 						</td>
 						<td class="left">
-							<?php echo JText::_($userProfile->profile['postal_code']." / ".$userProfile->profile['city']); ?>
+							<?php echo JText::_($userEstipress->estipress['fonction']); ?>
 						</td>
 						<td class="left">
-							<?php echo JText::_($userProfilEstipress->profilestipress['tshirtsize']); ?>
+							<?php echo JText::_($userEstipress->estipress['zone_diffusion']); ?>
+						</td>
+						<td class="left">
+							<?php foreach($userEstipress->estipress['dates_presence'] as $i=>$item){ echo $item.'<br />'; } ?>
 						</td>
 						<td class="center">
 							<!--<a class="btn" onclick="composeEmail('<?php echo $this->member->member_id; ?>')">

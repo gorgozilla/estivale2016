@@ -7,14 +7,13 @@ jimport('joomla.application.component.modellist');
 class EstipressModelAccred extends JModelList
 {
 	//Add this handy array with database fields to search in
-	protected $searchInFields = array('u.name', 'u.email', 'b.tshirtsize');
+	protected $searchInFields = array('u.name', 'u.email');
 	
 	function __construct()
 	{   
 		$config['filter_fields'] = array(
 			'u.name',
-			'u.email',
-			'b.tshirtsize'
+			'u.email'
 		);
 		$config['filter_fields']=array_merge($this->searchInFields,array('b.accred'));
 		parent::__construct($config);  
@@ -32,13 +31,9 @@ class EstipressModelAccred extends JModelList
 		//Omit double (white-)spaces and set state
 		$this->setState('filter.search', preg_replace('/\s+/',' ', $search));
 		
-		//Filter (dropdown) tshirt-size
-		$tshirtsizes= $app->getUserStateFromRequest($this->context.'.filter.tshirt_size', 'filter_tshirtsize', '', 'string');
-		$this->setState('filter.tshirt_size', $tshirtsizes);
-		
-		//Filter (dropdown) tshirt-size
-		$campingPlace= $app->getUserStateFromRequest($this->context.'.filter.campingPlace', 'filter_campingPlace', '', 'int');
-		$this->setState('filter.campingPlace', $campingPlace);
+		//Filter (dropdown) days presence
+		$days_presence= $app->getUserStateFromRequest($this->context.'.filter.day_presence', 'filter_day_presence', '', 'string');
+		$this->setState('filter.day_presence', $days_presence);
 		
 		// Get pagination request variables
 		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'string');
@@ -50,7 +45,7 @@ class EstipressModelAccred extends JModelList
 		$this->setState('limit', $limit);
 		$this->setState('limitstart', $limitstart);
 		
-		parent::populateState('lastname', 'ASC');
+		parent::populateState('b.user_id', 'ASC');
 	}
 
   function getTotal()
@@ -117,14 +112,9 @@ class EstipressModelAccred extends JModelList
 			$query->where('('.implode($regex.' OR ',$this->searchInFields).$regex.')');
 		}
 		
-		$tshirtsize= $db->escape($this->getState('filter.tshirt_size'));
-		if (!empty($tshirtsize)) {
-			$query->where('b.user_id IN (SELECT b.user_id FROM g51bu_estipress_accred as b,g51bu_users as u,g51bu_user_profiles as p WHERE b.user_id=p.user_id AND b.user_id=u.id AND (p.profile_value=\'"'.$tshirtsize.'"\' AND p.profile_key=\'profilestipress.tshirtsize\') group by b.user_id)');
-		}
-		
-		$campingPlace= $db->escape($this->getState('filter.campingPlace'));
-		if (!empty($campingPlace)) {
-			$query->where('(p.profile_value=\'"'.$campingPlace.'"\' AND p.profile_key=\'profilestipress.campingPlace\')');
+		$day_presence= $db->escape($this->getState('filter.day_presence'));
+		if (!empty($day_presence)) {
+			$query->where('b.user_id IN (SELECT b.user_id FROM g51bu_estipress_accred as b,g51bu_users as u,g51bu_user_profiles as p WHERE b.user_id=p.user_id AND b.user_id=u.id AND (p.profile_value LIKE \'%'.$day_presence.'%\' AND p.profile_key=\'estipress.dates_presence\') group by b.user_id)');
 		}
 		
 		$query->group('b.user_id');

@@ -44,26 +44,9 @@ class EstipressHelpersEstipress extends JHelperContent
 	public static function addSubmenu($vName)
     {
         JHtmlSidebar::addEntry(
-            'Membres',
-            'index.php?option=com_estipress&view=members',
-            $vName == 'members'
-        );
-		
-		JHtmlSidebar::addEntry(
-            'Secteurs',
-            'index.php?option=com_estipress&view=services',
-            $vName == 'services'
-        );
-		
-		JHtmlSidebar::addEntry(
-            'Calendriers',
-            'index.php?option=com_estipress&view=calendars',
-            $vName == 'calendars'
-        );
-		JHtmlSidebar::addEntry(
-            'Inscriptions',
-            'index.php?option=com_estipress&view=daytimes',
-            $vName == 'daytimes'
+            'Liste des accréditations',
+            'index.php?option=com_estipress&view=accred',
+            $vName == 'accred'
         );
     }
 }
