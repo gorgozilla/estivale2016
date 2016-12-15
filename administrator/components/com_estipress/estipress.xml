@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5.0" method="upgrade">
-	<name>COM_ESTIPRESS</name>
+	<name>Estipress</name>
 	<creationDate>2013-01-31</creationDate>
 	<author>Spark</author>
 	<authorEmail>info@sparkbuilt.com</authorEmail>
@@ -8,7 +8,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<version>1.0.0</version>
-	<description>COM_ESTIPRESS_DESCRIPTION</description>
+	<description>Gestion des accréditations Estivale Open Air</description>
 
 	<install>
   		<sql>

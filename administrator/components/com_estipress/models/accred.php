@@ -183,6 +183,36 @@ class EstipressModelAccred extends JModelList
 		$result = $db->loadObjectList();
 		return $result;
 	}
+	
+	public function getProfileEstipress($userId)
+	{
+		// Load the profile data from the database.
+		$db = JFactory::getDbo();
+		$db->setQuery(
+			'SELECT profile_key, profile_value, email FROM #__user_profiles as p, #__users as u' .
+			' WHERE p.user_id = '.(int) $userId .
+			' AND p.user_id=u.id'.
+			' AND p.profile_key LIKE \'estipress.%\'' .
+			' ORDER BY ordering'
+		);
+		$results = $db->loadRowList();
+ 
+		// Check for a database error.
+		if ($db->getErrorNum()) {
+			$this->_subject->setError($db->getErrorMsg());
+			return false;
+		}
+ 
+		// Merge the profile data.
+		$data->estipress = array();
+		foreach ($results as $v) {
+			$k = str_replace('estipress.', '', $v[0]);
+			$data->estipress[$k] = json_decode($v[1], true);
+		}
+		$data->estipress['email'] = $results[0][2];
+		
+		return $data;
+	}
 
 	/**
 	* Delete a accred

@@ -141,6 +141,7 @@ $pageId = $jinput->get('id');
 					
 					<div class="row">
 						<div class="col-xs-12 content">
+						<jdoc:include type="message" />
 							<jdoc:include type="component" />
 						</div>
 					</div>

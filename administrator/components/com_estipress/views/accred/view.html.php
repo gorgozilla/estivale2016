@@ -10,7 +10,6 @@ class EstipressViewAccred extends JViewLegacy
 		$this->state	= $this->get('State');
 		$this->pagination	= $this->get('Pagination');
 		$this->searchterms	= $this->state->get('filter.search');
-		$this->campingPlace	= $this->state->get('filter.campingPlace');
 		$this->user = JFactory::getUser();
 		$this->limitstart=$this->state->get('limitstart');
 
@@ -34,7 +33,7 @@ class EstipressViewAccred extends JViewLegacy
     {
         // Get the toolbar object instance
         $bar = JToolBar::getInstance('toolbar');
-		JToolbarHelper::title(JText::_('Gestion des bénévoles : Bénévoles'));
+		JToolbarHelper::title(JText::_('Gestion des accréditations : Liste des accréd.'));
         JToolbarHelper::addNew('member.add');
 		JToolbarHelper::deleteList('Etes-vous sûr de vouloir supprimer le(s) membre(s)? Ceci supprimera également toutes les tranches horaires alloues à ce dernier. Alors?', 'members.deleteListMember');
     }

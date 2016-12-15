@@ -35,6 +35,7 @@ function tableOrdering( order, dir, task )
 
 <div id="j-main-container" class="span10">
 	<h1>Liste des accréditations</h1>
+	<a href="index.php?option=com_estipress&task=accred.exportAccred" class="btn btn-success" role="button"><?php echo JText::_('Exporter les accréditations'); ?></a>
 	<form action="<?php echo JRoute::_('index.php?option=com_estipress&view=accred');?>" method="post" name="adminForm" id="adminForm">
 		<div id="j-main-container">
 			<div id="filter-bar" class="btn-toolbar">
@@ -104,9 +105,9 @@ function tableOrdering( order, dir, task )
 						</td>
 						<td><?php echo $itemNumber; ?></td>
 						<td class="left">
-							<a href="<?php echo JRoute::_('index.php?option=com_estipress&task=member.edit&member_id='.(int) $item->member_id); ?>">
+							<!--<a href="<?php echo JRoute::_('index.php?option=com_estipress&task=member.edit&member_id='.(int) $item->member_id); ?>">-->
 								<?php echo JText::_($user->name); ?>
-							</a>
+							<!--</a>-->
 						</td>
 						<td class="left">
 							<a href="mailto:<?php echo $item->email; ?>">
@@ -126,7 +127,7 @@ function tableOrdering( order, dir, task )
 							<?php echo JText::_($userEstipress->estipress['zone_diffusion']); ?>
 						</td>
 						<td class="left">
-							<?php foreach($userEstipress->estipress['dates_presence'] as $i=>$item){ echo $item.'<br />'; } ?>
+							<?php for($i=0; $i<count($userEstipress->estipress['dates_presence']); $i++){ echo $userEstipress->estipress['dates_presence'][$i].'<br />'; } ?>
 						</td>
 						<td class="center">
 							<!--<a class="btn" onclick="composeEmail('<?php echo $this->member->member_id; ?>')">

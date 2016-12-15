@@ -22,7 +22,7 @@ class EstipressHelpersUser
 	{
 		if ($userId == 0)
 		{
-			$user   = JFactory::getUser();
+			//$user   = JFactory::getUser();
 			$userId = $user->id;
 		}
 
